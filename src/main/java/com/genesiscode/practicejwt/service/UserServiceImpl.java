@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService{
         return roleRepository.save(role);
     }
 
+    @Transactional
     @Override
     public void addRoleToUser(String username, String roleName) {
         User user = userRepository.findByUsername(username)
